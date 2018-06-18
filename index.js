@@ -1,60 +1,80 @@
-function getInputs() {
-    var inputRow_1 = [];
-    inputRow_1.push(document.getElementById("userInput_1").value);
-    inputRow_1.push(document.getElementById("userInput_2").value);
-    inputRow_1.push(document.getElementById("userInput_3").value);
+document.getElementById("grid").addEventListener('click', move);
+var grid = [[], [], []];
+var inputs = ["x", "o"];
+var currentIndex = 0;
+var count = 0;
 
-    var inputRow_2 = [];
-    inputRow_2.push(document.getElementById("userInput_4").value);
-    inputRow_2.push(document.getElementById("userInput_5").value);
-    inputRow_2.push(document.getElementById("userInput_6").value);
+function move(event){
+    var target = event.target;
+    if(target.tagName !== "TD"){
+        return;
+    }
+    var rowIndex = event.target.parentElement.rowIndex;
+    var cellIndex = event.target.cellIndex;
 
-    var inputRow_3 = [];
-    inputRow_3.push(document.getElementById("userInput_7").value);
-    inputRow_3.push(document.getElementById("userInput_8").value);
-    inputRow_3.push(document.getElementById("userInput_9").value);
-
-    var inputArr = [inputRow_1, inputRow_2, inputRow_3];
-    // console.log(inputArr);
-
-    computeScore(inputArr);
+    if(grid[rowIndex][cellIndex]){
+        return;
+    } 
+    var value = inputs[currentIndex];
+    grid[rowIndex][cellIndex] = value;
+    currentIndex = 1 - currentIndex;
+    target.innerText = value;
+    count += 1;
+    
+    if(count >= 5){
+        console.log(grid);
+        computeScore(grid);
+    }
 }
 
 function computeScore(arr){
-    console.log(arr);
     // check rows
-    let count = 1;
-    let char = arr[0][0];
-    for(let i = 0; i < arr.length; i++){
-        for(let j = 0; j < arr[i].length; j++){
-            if(arr[i][j] == arr[i][j+1] && arr[i][j] !== null){
-                count += 1;
-                char = arr[i][j];
-            }
-        }
-        if(count == 3){
-            console.log(char + " " + "winner");
-            return;
-        }
+    if(arr[0][0] == arr[0][1] && arr[0][1] == arr[0][2]){
+        document.getElementById("text").innerHTML("winner");
+        alert(arr[0][0] + " " + "winner");
     }
+    if(arr[1][0] == arr[1][1] && arr[1][1] == arr[1][2]){
+        alert(arr[1][0] + " " + "winner");
+    }
+    if(arr[2][0] == arr[2][1] && arr[2][1] == arr[2][2]){
+        alert(arr[2][0] + " " + "winner");
+    }
+    // let count = 1;
+    // let char = arr[0][0];
+    // for(let i = 0; i < arr.length; i++){
+    //     for(let j = 0; j < arr[i].length; j++){
+    //         if(arr[i][j] == arr[i][j+1] && arr[i][j] !== null){
+    //             count += 1;
+    //             char = arr[i][j];
+    //         }
+    //     }
+    //     if(count == 3){
+    //         alert(char + " " + "winner");
+    //         return;
+    //     }
+    // }
 
     // check columns 
     if(arr[0][0] == arr[1][0] && arr[1][0] == arr[2][0]){
-        console.log(arr[0][0] + " " + "winner");
+        alert(arr[0][0] + " " +"winner");
     }
     if(arr[0][1] == arr[1][1] && arr[1][1] == arr[2][1]){
-        console.log(arr[0][1] + " " + "winner");
+        alert(arr[0][1] + " " +"winner");
     }
     if(arr[0][2] == arr[1][2] && arr[1][2] == arr[2][2]){
-        console.log(arr[0][2] + " " + "winner");
+        alert(arr[0][2] + " " +"winner");
     }
 
     // check diagonals
     if(arr[0][0] == arr[1][1] && arr[1][1] == arr[2][2]){
-        console.log(arr[0][0] + " " + "winner");
+        alert(arr[0][0] + " " +"winner");
     }
     if(arr[0][2] == arr[1][1] && arr[1][1] == arr[2][0]){
-        console.log(arr[0][2] + " " + "winner");
+        alert(arr[0][2] + " " +"winner");
     }
 }
 // computeScore([["o", null, null], ["x", "o", "o"], ["x", "o", "o"]]);
+
+function reset(){
+    window.location.reload();
+}

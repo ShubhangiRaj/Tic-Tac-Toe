@@ -4,32 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="index.js"></script>
+    <link rel="stylesheet" href="index.css"/>
     <title>TicTacToe</title>
 </head>
 <body>
     <!-- grid -->
-    <div>
-        <!-- row 1 -->
-        <div>
-            <input type="text" id="userInput_1">
-            <input type="text" id="userInput_2">
-            <input type="text" id="userInput_3">
-        </div>
-         <!-- row 2 -->
-         <div>
-            <input type="text" id="userInput_4">
-            <input type="text" id="userInput_5">
-            <input type="text" id="userInput_6">
-        </div>
-         <!-- row 3 -->
-         <div>
-            <input type="text" id="userInput_7">
-            <input type="text" id="userInput_8">
-            <input type="text" id="userInput_9">
-        </div>
-    </div>
-    <div><button type="submit" onclick="getInputs()">Check Winner</button></div>
+   <div>
+       <table id="grid">
+           <tbody>
+               <!-- row 1 -->
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <!-- row 2 -->
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <!-- row 3 -->
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <button id = "reset" onclick = "reset()">Reset</button>
+                </tr>
+           </tbody>
+       </table>
+       <h2 id = "text"></h2>
+   </div>
+   <script src = "index.js"></script>
 </body>
 </html>
 
